@@ -5,17 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title type="css">Document</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 50px;
+            margin: -20px;
+        }
+
+        .timer {
+            display: flex;
+            align-items: center;
+        }
+
+        .timer:not(:last-child) {
+            margin-bottom: 100px
+        }
+
+        .field {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px;
+        }
+
+        .label {
+            font-size: 26px;
+        }
+    </style>
 </head>
 
 <body>
 
-    <div id="timer-1">
+    <!-- <div id="timer-1">
         <h2>Таймер 1</h2>
     </div>
     <div id="timer-2">
         <h2>Таймер 2</h2>
     </div>
+    <div id="timer-3"></div> -->
 
     <script type="module" src="./index.js"></script>
 </body>

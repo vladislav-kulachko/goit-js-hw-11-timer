@@ -1,5 +1,5 @@
-function templateTimer() {
-  return `<div class="timer">
+function templateTimer(id) {
+  return `<div class="timer" id="timer-${id}">
     <div class="field">
       <span class="value" data-value="days">
         0
@@ -32,10 +32,13 @@ function templateTimer() {
 
 class CountdownTimer {
   constructor({ selector, targetDate }) {
+    let i = selector.split("");
+    this.id = i[i.length - 1];
+
     document
-      .querySelector(selector)
-      .insertAdjacentHTML("beforeend", templateTimer());
-    this.timer = document.querySelector(`${selector} .timer`);
+      .querySelector("body")
+      .insertAdjacentHTML("beforeend", templateTimer(this.id));
+    this.timer = document.querySelector(`${selector}.timer`);
     this.days = document.querySelector(`${selector} [data-value="days"]`);
     this.hours = document.querySelector(`${selector} [data-value="hours"]`);
     this.mins = document.querySelector(`${selector} [data-value="mins"]`);
@@ -45,7 +48,7 @@ class CountdownTimer {
   }
   start(targetDate) {
     const targetDateMsec = Date.parse(targetDate);
-    this.id = setInterval(() => {
+    setInterval(() => {
       const currentDateMsec = Date.now();
       const time = targetDateMsec - currentDateMsec;
       this.createTimerElem(time);
@@ -55,7 +58,6 @@ class CountdownTimer {
       this.hours.textContent = hours;
       this.mins.textContent = mins;
       this.secs.textContent = secs;
-      this.timer.setAttribute("id", this.id);
     }, 1000);
   }
 
@@ -70,9 +72,9 @@ class CountdownTimer {
 
 const timer1 = new CountdownTimer({
   selector: "#timer-1",
-  targetDate: new Date("Jul 11, 2021"),
+  targetDate: new Date("Jul 23, 2022"),
 });
 const timer2 = new CountdownTimer({
   selector: "#timer-2",
-  targetDate: new Date("Jun 27, 2021"),
+  targetDate: new Date("Jun 29, 2021"),
 });
