@@ -54,13 +54,18 @@ class CountdownTimer {
       this.createTimerElem(time);
       console.log(time);
       const { days, hours, mins, secs } = this.createTimerElem(time);
-      this.days.textContent = days;
-      this.hours.textContent = hours;
-      this.mins.textContent = mins;
-      this.secs.textContent = secs;
+      this.days.textContent = `${this.pad3(days)} :`;
+      this.hours.textContent = `${this.pad2(hours)} :`;
+      this.mins.textContent = `${this.pad2(mins)} :`;
+      this.secs.textContent = `${this.pad2(secs)} `;
     }, 1000);
   }
-
+  pad2(value) {
+    return String(value).padStart(2, "0");
+  }
+  pad3(value) {
+    return String(value).padStart(3, "0");
+  }
   createTimerElem(time) {
     const days = Math.floor(time / (1000 * 60 * 60 * 24));
     const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -76,5 +81,5 @@ const timer1 = new CountdownTimer({
 });
 const timer2 = new CountdownTimer({
   selector: "#timer-2",
-  targetDate: new Date("Jun 29, 2021"),
+  targetDate: new Date("Jul 2, 2021"),
 });
